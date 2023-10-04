@@ -11,6 +11,7 @@ public class DAOAtendimento extends DAO<Atendimento>{
 	public Atendimento read (Object chave) {
 		int id = (int) chave;
 		Query q = manager.query();
+		q.constrain(Atendimento.class);
 		q.descend("id").constrain(id);
 		
 		List<Atendimento> atendimentos = q.execute();

@@ -5,6 +5,7 @@ package appswing;
  * Prof. Fausto Maranh�o Ayres
  **********************************/
 
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
@@ -29,21 +30,16 @@ public class TelaPrincipal {
 
 
 
-	/**
-	 * Launch the application.
-	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					TelaPrincipal window = new TelaPrincipal();
-//					window.frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
+
+	 	public static void main(String[] args) {
+	 		EventQueue.invokeLater(new Runnable() {
+		public void run() {				try {
+					TelaPrincipal window = new TelaPrincipal();
+					window.frame.setVisible(true);
+			} catch (Exception e) {					e.printStackTrace();
+				}			}
+		});
+	}
 
 	/**
 	 * Create the application.
@@ -59,7 +55,7 @@ public class TelaPrincipal {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setTitle("Locadora");
+		frame.setTitle("Clinica de Atendimento");
 		frame.setBounds(100, 100, 450, 363);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);

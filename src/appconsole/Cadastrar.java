@@ -34,9 +34,9 @@ public class Cadastrar {
 		
 		try {
 			System.out.println("cadastrando atendimento...");
-			Fachada.CriarAtendimento(Fachada.localizarPaciente("14059714445"),"03-10-2023",Fachada.localizarPlano("Premium"));
-			Fachada.CriarAtendimento(Fachada.localizarPaciente("14059714531"),"03-10-2023",Fachada.localizarPlano("Básico"));
-			Fachada.CriarAtendimento(Fachada.localizarPaciente("14059731137"),"03-10-2023",Fachada.localizarPlano("Premium"));
+			Fachada.CriarAtendimento("14059714445","03-10-2023","Premium");
+			Fachada.CriarAtendimento("14621459752","03-10-2023","Básico");
+			Fachada.CriarAtendimento("14059765432","03-10-2023","Premium");
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

@@ -45,24 +45,24 @@ public class Fachada {
 		return paciente;
 	}
 
-	public static Atendimento CriarAtendimento(Paciente paciente, String data, Plano plano) throws Exception{
+	public static Atendimento CriarAtendimento(String CPF, String data, String nomeplano) throws Exception{
 		DAO.begin();
-		Paciente pac= daopaciente.read(paciente);
-		Plano pl= daoplano.read(plano.getNome());
-		if(pac==null) 
+		Paciente paciente= daopaciente.read(CPF);
+		Plano plano= daoplano.read(nomeplano);
+		if(paciente==null) 
 			throw new Exception ("paciente não existe no sistema!");
-		if(pl==null) 
+		if(plano==null) 
 			throw new Exception ("plano não existe no sistema!");
-		if(!pac.getAtendimentos().isEmpty()) {
-		for(Atendimento atendimento: pac.getAtendimentos()) {
+		if(!paciente.getAtendimentos().isEmpty()) {
+		for(Atendimento atendimento: paciente.getAtendimentos()) {
 			if(atendimento.getData().equals(data)) {
 				throw new Exception("Paciente não pode ter mais de 1 consulta no dia");
 				}
 			}
 		}
 		Atendimento atendimento = new Atendimento(data,paciente,plano);
-		pl.adicionar(atendimento);
-		pac.adicionar(atendimento);
+		plano.adicionar(atendimento);
+		paciente.adicionar(atendimento);
 
 		daoatendimento.create(atendimento);
 		daopaciente.update(paciente);
@@ -97,7 +97,7 @@ public class Fachada {
 
 	public static void excluirPaciente(String CPF) throws Exception{
 		DAO.begin();
-		Paciente paciente =  daopaciente.read(CPF);
+		Paciente paciente =daopaciente.read(CPF);
 		if(paciente==null) 
 			throw new Exception ("Paciente desse cpf requerido não existe :" + CPF);
 		
@@ -132,16 +132,21 @@ public class Fachada {
 		
 		DAO.commit();
 	}
-	public static void CriarPlano(String nome) throws Exception{
+	public static Plano CriarPlano(String nome) throws Exception{
 		DAO.begin();
-		Plano plano =  daoplano.read(nome);
-		if(plano!=null) 
-			throw new Exception ("Plano já criado " + nome);
+		Plano plano = daoplano.read(nome);
 		
-		plano= new Plano(nome);
-		daoplano.create(plano);
+		if (plano == null) {
+			// O plano não existe no banco de dados
+			plano = new Plano(nome);
+			daoplano.create(plano);
+		} else {
+			// O plano já existe no banco de dados
+			throw new Exception ("Plano já criado " + nome);
+		}
 		
 		DAO.commit();
+		return plano;
 	}
 
 	public static void excluirPlano(String nome) throws Exception{

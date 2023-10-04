@@ -13,7 +13,8 @@ public class DAOPaciente extends DAO<Paciente>{
 	public Paciente read (Object chave) {
 		String cpf = (String) chave;
 		Query q = manager.query();
-		q.descend("cpf").constrain(cpf);
+		q.constrain(Paciente.class);
+		q.descend("CPF").constrain(cpf);
 		
 		List<Paciente> pacientes = q.execute();
 		if (pacientes.size() > 0) {

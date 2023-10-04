@@ -82,7 +82,7 @@ public class TelaPaciente {
 		frame.setModal(true);
 
 		frame.setResizable(false);
-		frame.setTitle("Carro");
+		frame.setTitle("Pacientes");
 		frame.setBounds(100, 100, 729, 385);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -131,7 +131,7 @@ public class TelaPaciente {
 		label_4.setBounds(21, 190, 431, 14);
 		frame.getContentPane().add(label_4);
 
-		label_2 = new JLabel("placa:");
+		label_2 = new JLabel("Nome:");
 		label_2.setHorizontalAlignment(SwingConstants.LEFT);
 		label_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_2.setBounds(21, 269, 71, 14);
@@ -143,7 +143,7 @@ public class TelaPaciente {
 		textField.setBounds(68, 264, 195, 20);
 		frame.getContentPane().add(textField);
 
-		button_1 = new JButton("Criar novo carro");
+		button_1 = new JButton("Criar novo Paciente");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -176,7 +176,7 @@ public class TelaPaciente {
 		button.setBounds(308, 11, 89, 23);
 		frame.getContentPane().add(button);
 
-		label_3 = new JLabel("modelo:");
+		label_3 = new JLabel("CPF");
 		label_3.setHorizontalAlignment(SwingConstants.LEFT);
 		label_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_3.setBounds(281, 269, 63, 14);
@@ -194,7 +194,7 @@ public class TelaPaciente {
 				try{
 					if (table.getSelectedRow() >= 0){	
 						label.setText("nao implementado " );
-						String cpf = (String) table.getValueAt( table.getSelectedRow(), 0);
+						String cpf = (String) table.getValueAt( table.getSelectedRow(), 1);
 
 						Fachada.excluirPaciente(cpf);
 						label.setText("paciente excluido" );
@@ -212,7 +212,7 @@ public class TelaPaciente {
 		button_2.setBounds(281, 213, 171, 23);
 		frame.getContentPane().add(button_2);
 
-		button_3 = new JButton("exibir alugueis");
+		button_3 = new JButton("exibir atendimentos");
 		button_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -224,7 +224,7 @@ public class TelaPaciente {
 						if(paciente != null) {
 							String texto="";
 							if(paciente.getAtendimentos().isEmpty())
-								texto = "nao possui alugueis";
+								texto = "nao possui atendimentos";
 							else
 								for (Atendimento a : paciente.getAtendimentos()) {
 									texto = texto + a.getData()+ "-" +a.getPaciente().getNome()+ "-" + a.getPlano().getNome()+ "\n";
