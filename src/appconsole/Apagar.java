@@ -15,10 +15,10 @@ public class Apagar {
 	public Apagar() {
 		try {
 			Fachada.inicializar();
-			//Fachada.excluirPaciente("14059714445");		 
-			//System.out.println("paciente excluido");
-			Fachada.CancelarAtendimento(1);
+			Fachada.excluirPaciente("14059714445");		 
 			System.out.println("paciente excluido");
+			//Fachada.CancelarAtendimento(1);
+			//System.out.println("paciente excluido");
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

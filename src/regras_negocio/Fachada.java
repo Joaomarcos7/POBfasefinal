@@ -110,6 +110,9 @@ public class Fachada {
 			for(Atendimento atendimento : paciente.getAtendimentos()) {
 				//REMOVER DA LISTA DE ATENDIMENTO EM PLANOS
 				   daoatendimento.delete(atendimento);
+				   atendimento.getPlano().remover(atendimento);
+				   daoplano.update(atendimento.getPlano());
+				   daoatendimento.update(atendimento);
 				   //atendimentos são apagados se apagamos seus pacientes!
 			}
 			daopaciente.delete(paciente);
@@ -137,7 +140,7 @@ public class Fachada {
 		if (atendimento==null)
 			throw new Exception("Atendimento  não existe : " + id);
 		if(paciente==null) 
-			throw new Exception("Paciente não existe! : " + paciente.getNome() );
+			throw new Exception("Paciente não existe! : " );
 		if(atendimento.getPaciente().equals(paciente))
 			throw new Exception("O paciente já é igual ao que ta : "+ paciente.getNome());
 		
@@ -186,6 +189,9 @@ public class Fachada {
 		
 		for(Atendimento atendimento : plano.getAtendimentos() ) {
 			daoatendimento.delete(atendimento);
+			atendimento.getPaciente().remover(atendimento);
+			daopaciente.update(atendimento.getPaciente());
+			daoatendimento.update(atendimento);
 		}
 		daoplano.delete(plano);
 		DAO.commit();
