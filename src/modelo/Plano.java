@@ -23,18 +23,9 @@ public class Plano {
 		lista.add(a);
 	}
 
-	public void remover(int id) throws Exception {
-		if(!lista.isEmpty()) {
-		for(Atendimento atendimento : lista) {
-			if(atendimento.getId()==id) {
-				boolean hasit=this.lista.remove(atendimento);
-				if(!hasit) {
-					throw new Exception("Não tem este atendimento na lista ");
-					}
-				}
-			}
-		}
-	}
+	public void remover(Atendimento a) throws Exception {
+		this.lista.remove(a);
+}
 	
 	public ArrayList<Atendimento> getAtendimentos(){
 		return this.lista;

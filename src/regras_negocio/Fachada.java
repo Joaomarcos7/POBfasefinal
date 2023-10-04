@@ -55,8 +55,10 @@ public class Fachada {
 			throw new Exception ("plano não existe no sistema!");
 		if(!paciente.getAtendimentos().isEmpty()) {
 		for(Atendimento atendimento: paciente.getAtendimentos()) {
+			if(atendimento!=null) {
 			if(atendimento.getData().equals(data)) {
 				throw new Exception("Paciente não pode ter mais de 1 consulta no dia");
+					}
 				}
 			}
 		}
@@ -76,7 +78,6 @@ public class Fachada {
 		Atendimento atendimento =  daoatendimento.read(id);
 		if(atendimento==null) 
 			throw new Exception ("Atendimento não existe para ser cancelado!");
-
 		if(atendimento.getPaciente()==null) 
 			throw new Exception ("Atendimento não possui atendimento relacionado");
 		if(atendimento.getPlano()==null) 
@@ -85,11 +86,11 @@ public class Fachada {
 		Paciente paciente = daopaciente.read(atendimento.getPaciente().getCPF());
 		Plano plano= daoplano.read(atendimento.getPlano().getNome());
 		
+		paciente.remover(atendimento);
+		plano.remover(atendimento);
+		
 		
 		daoatendimento.delete(atendimento);
-		paciente.remover(id);
-		plano.remover(id);
-		
 		daopaciente.update(paciente);
 		daoplano.update(plano);
 		DAO.commit();
@@ -108,7 +109,8 @@ public class Fachada {
 		else {
 			for(Atendimento atendimento : paciente.getAtendimentos()) {
 				//REMOVER DA LISTA DE ATENDIMENTO EM PLANOS
-				   daoatendimento.delete(atendimento);//atendimentos são apagados se apagamos seus pacientes!
+				   daoatendimento.delete(atendimento);
+				   //atendimentos são apagados se apagamos seus pacientes!
 			}
 			daopaciente.delete(paciente);
 			DAO.commit();
@@ -118,7 +120,8 @@ public class Fachada {
 	
 	public static void RemoverdoPlano(Plano plano ,int id) {
 		try{
-			plano.remover(id);
+			Atendimento atendimento= daoatendimento.read(id);
+			plano.remover(atendimento);
 			daoplano.update(plano);
 			}
 		catch(Exception e){
@@ -142,7 +145,7 @@ public class Fachada {
 		Paciente pacienteanterior = atendimento.getPaciente();
 		atendimento.setPaciente(paciente);
 		if(!paciente.getAtendimentos().isEmpty()) {
-		pacienteanterior.remover(id);
+		pacienteanterior.remover(atendimento);
 		daopaciente.update(pacienteanterior);
 		}
 		
@@ -157,6 +160,7 @@ public class Fachada {
 		
 		return atendimento;
 	}
+	
 	public static Plano CriarPlano(String nome) throws Exception{
 		DAO.begin();
 		Plano plano = daoplano.read(nome);
@@ -181,7 +185,7 @@ public class Fachada {
 			throw new Exception("Plano não existe :" + nome);
 		
 		for(Atendimento atendimento : plano.getAtendimentos() ) {
-			atendimento.setPlano(null);
+			daoatendimento.delete(atendimento);
 		}
 		daoplano.delete(plano);
 		DAO.commit();
@@ -217,9 +221,9 @@ public class Fachada {
 
 	////////////////// CRIAR QUERY ESPECIFICAS ///////////////////////////////////
 	
-	public static List<Paciente> PacienteSemConsulta(){ //pacientes com nenhum atendimento agendado
+	public static List<Paciente> PacienteMaisConsultas(){ //pacientes com nenhum atendimento agendado
 		DAO.begin();
-		List<Paciente> pacientes =daopaciente.PacientesSemConsulta();
+		List<Paciente> pacientes =daopaciente.PacienteMaisConsultas();
 		DAO.commit();
 		return pacientes;
 	}

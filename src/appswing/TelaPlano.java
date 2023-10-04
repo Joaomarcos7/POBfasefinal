@@ -132,7 +132,7 @@ public class TelaPlano {
 		label_4.setBounds(21, 190, 431, 14);
 		frame.getContentPane().add(label_4);
 
-		label_2 = new JLabel("cpf:");
+		label_2 = new JLabel("Nome:");
 		label_2.setHorizontalAlignment(SwingConstants.LEFT);
 		label_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_2.setBounds(21, 269, 71, 14);
@@ -144,15 +144,15 @@ public class TelaPlano {
 		textField.setBounds(68, 264, 195, 20);
 		frame.getContentPane().add(textField);
 
-		button_1 = new JButton("Criar novo cliente");
+		button_1 = new JButton("Criar novo Plano");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if(textField.getText().isEmpty() || textField_1.getText().isEmpty()) {
+					if(textField.getText().isEmpty()) {
 						label.setText("campo vazio");
 						return;
 					}
-					String nome = textField_1.getText();
+					String nome = textField.getText();
 					Fachada.CriarPlano(nome);
 					label.setText("plano criado: "+ nome);
 					listagem();
@@ -176,17 +176,6 @@ public class TelaPlano {
 		button.setBounds(308, 11, 89, 23);
 		frame.getContentPane().add(button);
 
-		label_3 = new JLabel("nome:");
-		label_3.setHorizontalAlignment(SwingConstants.LEFT);
-		label_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		label_3.setBounds(281, 269, 63, 14);
-		frame.getContentPane().add(label_3);
-
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("Dialog", Font.PLAIN, 12));
-		textField_1.setColumns(10);
-		textField_1.setBounds(336, 264, 168, 20);
-		frame.getContentPane().add(textField_1);
 
 		button_2 = new JButton("Apagar selecionado");
 		button_2.addActionListener(new ActionListener() {
@@ -211,7 +200,7 @@ public class TelaPlano {
 		button_2.setBounds(281, 213, 171, 23);
 		frame.getContentPane().add(button_2);
 
-		button_3 = new JButton("exibir alugueis");
+		button_3 = new JButton("exibir Planos");
 		button_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -223,12 +212,12 @@ public class TelaPlano {
 						if(plano !=  null) {
 							String texto="";
 							if(plano.getAtendimentos().isEmpty())
-								texto = "nao possui alugueis";
+								texto = "nao possui Planos";
 							else
 								for (Atendimento a : plano.getAtendimentos()) 
 									texto = texto + a.getData()+ "-" + a.getPaciente().getNome() + "-" +a.getPaciente().getNome()+ "\n";
 
-							JOptionPane.showMessageDialog(frame, texto, "alugueis", 1);
+							JOptionPane.showMessageDialog(frame, texto, "planos", 1);
 						}
 					}
 				}

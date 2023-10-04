@@ -29,7 +29,7 @@ public class DAOPaciente extends DAO<Paciente>{
 	}
 	
 	
-	public List<Paciente> PacientesSemConsulta() {
+	public List<Paciente> PacienteMaisConsultas() {
 		Query q = manager.query();
 		q.constrain(Paciente.class);
 		q.constrain(new Filtro());
@@ -46,7 +46,7 @@ public class DAOPaciente extends DAO<Paciente>{
 			//obter cada objeto da classe Pessoa que esta no banco
 			Paciente p = (Paciente) candidate.getObject(); 
 			
-			if(p.getAtendimentos().isEmpty()) 
+			if(p.getAtendimentos().size()>1) 
 				candidate.include(true); 	//incluir objeto no resultado da consulta
 			else		
 				candidate.include(false);	//excluir objeto do resultado da consulta

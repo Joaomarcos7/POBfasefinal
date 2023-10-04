@@ -136,17 +136,17 @@ public class TelaConsulta {
 				else
 					switch(index) {
 					case 0: 
-						String modelo = JOptionPane.showInputDialog("digite o CPF");
+						String modelo = JOptionPane.showInputDialog("digite o CPF:");
 						List<Atendimento> resultado1 = Fachada.AtendimentosdeN(modelo);
 						listagemAtendimento(resultado1);
 						break;
 					case 1: 
-						String modelo2 = JOptionPane.showInputDialog("digite a Data ");
+						String modelo2 = JOptionPane.showInputDialog("digite a Data");
 						List<Atendimento> resultado2 = Fachada.AtendimentosDataN(modelo2);
 						listagemAtendimento(resultado2);
 						break;
 					case 2: 
-						List<Paciente> resultado3 = Fachada.PacienteSemConsulta();
+						List<Paciente> resultado3 = Fachada.PacienteMaisConsultas();
 						listagemPaciente(resultado3);
 						break;
 
@@ -159,7 +159,7 @@ public class TelaConsulta {
 
 		comboBox = new JComboBox();
 		comboBox.setToolTipText("selecione a consulta");
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"alugueis finalizados", "alugueis de um determinado modelo de carro", "carros que possuem N alugueis"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Pacientes com mais de 1 consulta", "atendimentos de um determinado paciente", "atendimento na data X"}));
 		comboBox.setBounds(21, 10, 513, 22);
 		frame.getContentPane().add(comboBox);
 	}

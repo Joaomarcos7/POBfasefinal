@@ -29,21 +29,18 @@ public class DAOAtendimento extends DAO<Atendimento>{
 	}
 	
 	public List<Atendimento> AtendimentosdeN(String CPF){
-		Query q=manager.query();
-		q.constrain(Atendimento.class);
+		Query q2 = manager.query();
+		q2.constrain(Atendimento.class);  
+		q2.descend("paciente").descend("CPF").constrain(CPF);
 		
-		q.descend("paciente").descend("CPF").constrain(CPF);
-		List<Atendimento> atendimentos = q.execute();
-		return atendimentos;
+		return q2.execute();
 	}
 	
 	public List<Atendimento> AtendimentosDataN(String Data){
-		Query q=manager.query();
-		q.constrain(Atendimento.class);
-		q.descend("data").constrain("Data");
-		
-		List<Atendimento> atendimentos= q.execute();
-		return atendimentos;
+		Query q1 = manager.query();
+		q1.constrain(Atendimento.class);  
+		q1.descend("data").constrain(Data);
+		return q1.execute();
 	}
 	
 	

@@ -34,17 +34,9 @@ public class Paciente {
 		this.lista.add(a);
 	}
 	
-	public void remover(int id) throws Exception {
-		for(Atendimento atendimento : lista) {
-			if(atendimento.getId()==id) {
-				boolean hasit=this.lista.remove(atendimento);
-				if(!hasit) {
-					throw new Exception("Não tem este atendimento na lista ");
-				}
-			}
-		}
-	}
-		
+	public void remover(Atendimento atendimento) throws Exception {
+		lista.remove(atendimento);
+}
 	public ArrayList<Atendimento> getAtendimentos(){
 			return this.lista;
 		}

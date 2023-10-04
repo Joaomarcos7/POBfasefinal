@@ -87,7 +87,7 @@ public class TelaAtendimento {
 		frame = new JDialog();
 		frame.setModal(true);
 		frame.setResizable(false);
-		frame.setTitle("Aluguel");
+		frame.setTitle("Atendimentos");
 		frame.setBounds(100, 100, 729, 419);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -136,7 +136,7 @@ public class TelaAtendimento {
 		label_6.setBounds(21, 190, 431, 14);
 		frame.getContentPane().add(label_6);
 
-		label_1 = new JLabel("Data de In\u00EDcio:");
+		label_1 = new JLabel("CPF paciente");
 		label_1.setHorizontalAlignment(SwingConstants.LEFT);
 		label_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_1.setBounds(12, 269, 89, 14);
@@ -152,13 +152,13 @@ public class TelaAtendimento {
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if(textField.getText().isEmpty() || textField_1.getText().isEmpty() || textField_2.getText().isEmpty() || textField_3.getText().isEmpty()) {
+					if(textField.getText().isEmpty() || textField_1.getText().isEmpty() || textField_2.getText().isEmpty()) {
 						label.setText("campo vazio");
 						return;
 					}
-					String data = textField.getText();
-					String paciente = textField_2.getText();
-					String plano= textField_3.getText();
+					String paciente = textField.getText();
+					String data = textField_1.getText();
+					String plano= textField_2.getText();
 
 					Fachada.CriarAtendimento(paciente,data,plano);
 					label.setText("Atendimento criado");
@@ -183,7 +183,7 @@ public class TelaAtendimento {
 		button.setBounds(308, 11, 89, 23);
 		frame.getContentPane().add(button);
 
-		label_2 = new JLabel("Data fim aluguel");
+		label_2 = new JLabel("Data");
 		label_2.setHorizontalAlignment(SwingConstants.LEFT);
 		label_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_2.setBounds(310, 269, 101, 14);
@@ -203,7 +203,7 @@ public class TelaAtendimento {
 						int idatendimento = (int) table.getValueAt( table.getSelectedRow(), 0);
 
 						Fachada.CancelarAtendimento(idatendimento);
-						label.setText("aluguel apagado" );
+						label.setText("atendimento apagado" );
 						listagem();
 
 					}
@@ -229,35 +229,13 @@ public class TelaAtendimento {
 		textPane.setBounds(47, 308, 1, 16);
 		frame.getContentPane().add(textPane);
 
-		label_3 = new JLabel("Placa do carro");
+		label_3 = new JLabel("Plano");
 		label_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_3.setBounds(12, 295, 89, 16);
 		frame.getContentPane().add(label_3);
 
-		label_4 = new JLabel("CPF do cliente");
-		label_4.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		label_4.setBounds(253, 297, 116, 16);
-		frame.getContentPane().add(label_4);
+		
 
-		textField_3 = new JTextField();
-		textField_3.setBounds(345, 294, 130, 20);
-		frame.getContentPane().add(textField_3);
-		textField_3.setColumns(10);
-
-		textField_4 = new JTextField();
-		textField_4.setFont(new Font("Dialog", Font.PLAIN, 12));
-		textField_4.setColumns(10);
-		textField_4.setBounds(555, 298, 168, 20);
-		frame.getContentPane().add(textField_4);
-
-		label_5 = new JLabel("diaria");
-		label_5.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		label_5.setBounds(498, 298, 52, 16);
-		frame.getContentPane().add(label_5);
-
-		button_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		button_3.setBounds(411, 215, 171, 23);
-		frame.getContentPane().add(button_3);
 	}
 
 	public void listagem() {
