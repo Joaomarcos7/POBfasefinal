@@ -194,7 +194,7 @@ public class TelaPaciente {
 				try{
 					if (table.getSelectedRow() >= 0){	
 						label.setText("nao implementado " );
-						String cpf = (String) table.getValueAt( table.getSelectedRow(), 1);
+						String cpf = (String) table.getValueAt( table.getSelectedRow(), 1); 
 
 						Fachada.excluirPaciente(cpf);
 						label.setText("paciente excluido" );

@@ -13,8 +13,9 @@ public class Alterar {
 	public Alterar() {
 		try {
 			Fachada.inicializar();
-			Fachada.MudarPlano(1,"Básico");;		
-			System.out.println("carro devolvido");
+			System.out.println("Alterando plano...");
+			Fachada.MudarPaciente(2,"14059714445");		
+			System.out.println("Plano Alterado!");
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

@@ -107,30 +107,55 @@ public class Fachada {
 		}
 		else {
 			for(Atendimento atendimento : paciente.getAtendimentos()) {
-				atendimento.setPaciente(null); //atendimentos continuam existindo no sistema, mas tem paciente null
+				//REMOVER DA LISTA DE ATENDIMENTO EM PLANOS
+				   daoatendimento.delete(atendimento);//atendimentos são apagados se apagamos seus pacientes!
 			}
 			daopaciente.delete(paciente);
 			DAO.commit();
 		}
 	}
+	
+	
+	public static void RemoverdoPlano(Plano plano ,int id) {
+		try{
+			plano.remover(id);
+			daoplano.update(plano);
+			}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+		
+	}
 
-	public static void MudarPlano(int id,String nome) throws Exception{
+	public static Atendimento MudarPaciente(int id,String cpf) throws Exception{
 		DAO.begin();
-		Atendimento atendimento = daoatendimento.read(id);
-		Plano plano=daoplano.read(nome);
+		Atendimento atendimento = (Atendimento) daoatendimento.read(id);
+		Paciente paciente = (Paciente) daopaciente.read(cpf);
 		if (atendimento==null)
 			throw new Exception("Atendimento  não existe : " + id);
-		if(plano==null) 
-			throw new Exception("Plano não definido! : " + nome );
-		if(atendimento.getPlano().getNome().equals(nome))
-			throw new Exception("O plano já é igual ao que ta : "+ nome);
+		if(paciente==null) 
+			throw new Exception("Paciente não existe! : " + paciente.getNome() );
+		if(atendimento.getPaciente().equals(paciente))
+			throw new Exception("O paciente já é igual ao que ta : "+ paciente.getNome());
 		
-		Plano planoanterior = atendimento.getPlano();
-		atendimento.setPlano(plano);
-		planoanterior.remover(id);
-		plano.adicionar(atendimento);
+		try {
+		Paciente pacienteanterior = atendimento.getPaciente();
+		atendimento.setPaciente(paciente);
+		if(!paciente.getAtendimentos().isEmpty()) {
+		pacienteanterior.remover(id);
+		daopaciente.update(pacienteanterior);
+		}
 		
+		paciente.adicionar(atendimento);
+		daopaciente.update(paciente);
+		daoatendimento.update(atendimento);
 		DAO.commit();
+		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+		
+		return atendimento;
 	}
 	public static Plano CriarPlano(String nome) throws Exception{
 		DAO.begin();

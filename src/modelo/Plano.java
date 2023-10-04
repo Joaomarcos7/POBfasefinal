@@ -24,11 +24,13 @@ public class Plano {
 	}
 
 	public void remover(int id) throws Exception {
+		if(!lista.isEmpty()) {
 		for(Atendimento atendimento : lista) {
 			if(atendimento.getId()==id) {
 				boolean hasit=this.lista.remove(atendimento);
 				if(!hasit) {
 					throw new Exception("Não tem este atendimento na lista ");
+					}
 				}
 			}
 		}
@@ -43,7 +45,7 @@ public class Plano {
 	}
 	
 	public String ToStringPattern() {
-		return "Paciente [  " +  "Nome=" + this.nome + "]";
+		return "Plano [  " +  "Nome=" + this.nome + "]";
 	}
 	
 }

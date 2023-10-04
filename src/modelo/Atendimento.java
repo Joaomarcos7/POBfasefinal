@@ -38,8 +38,9 @@ public class Atendimento {
 	}
 
 	public void setPaciente(Paciente paciente) {
-		this.paciente = paciente;
-		paciente.adicionar(this);
+		
+			this.paciente = paciente;
+			paciente.adicionar(this);
 	}
 
 	public Plano getPlano() {

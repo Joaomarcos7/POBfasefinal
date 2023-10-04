@@ -15,7 +15,7 @@ public class Apagar {
 	public Apagar() {
 		try {
 			Fachada.inicializar();
-			Fachada.excluirPaciente("14059714445");;		 
+			Fachada.excluirPaciente("14059714445");		 
 			System.out.println("paciente excluido");
 
 		} catch (Exception e) {
