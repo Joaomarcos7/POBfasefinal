@@ -112,7 +112,6 @@ public class Fachada {
 				   daoatendimento.delete(atendimento);
 				   atendimento.getPlano().remover(atendimento);
 				   daoplano.update(atendimento.getPlano());
-				   daoatendimento.update(atendimento);
 				   //atendimentos são apagados se apagamos seus pacientes!
 			}
 			daopaciente.delete(paciente);
@@ -191,7 +190,6 @@ public class Fachada {
 			daoatendimento.delete(atendimento);
 			atendimento.getPaciente().remover(atendimento);
 			daopaciente.update(atendimento.getPaciente());
-			daoatendimento.update(atendimento);
 		}
 		daoplano.delete(plano);
 		DAO.commit();
