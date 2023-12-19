@@ -37,6 +37,7 @@ public class Fachada {
 		DAO.begin();
 		Paciente paciente = daopaciente.read(CPF);
 		if (paciente!=null) {
+			DAO.rollback();
 			throw new Exception("paciente ja cadastrado:" + Nome);
 		}
 		paciente = new Paciente(CPF,Nome);
@@ -267,8 +268,10 @@ public class Fachada {
 	public static Usuario cadastrarUsuario(String nome, String senha) throws Exception{
 		DAO.begin();
 		Usuario usu = daousuario.read(nome);
-		if (usu!=null)
+		if (usu!=null) {
+			DAO.rollback();
 			throw new Exception("Usuario ja cadastrado:" + nome);
+		}
 		usu = new Usuario(nome, senha);
 
 		daousuario.create(usu);
@@ -277,10 +280,12 @@ public class Fachada {
 	}
 	public static Usuario localizarUsuario(String nome, String senha) {
 		Usuario usu = daousuario.read(nome);
-		if (usu==null)
+		if (usu==null) {
 			return null;
-		if (! usu.getSenha().equals(senha))
+		}
+		if (! usu.getSenha().equals(senha)) {
 			return null;
+		}
 		return usu;
 	}
 }

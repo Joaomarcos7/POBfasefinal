@@ -18,7 +18,7 @@ public class DAOPaciente extends DAO<Paciente> {
 			return null;
 		}
 	}
-
+	
 	public List<Paciente> readAll(){
 		TypedQuery<Paciente> query = manager.createQuery("select c from Paciente c LEFT JOIN FETCH c.atendimentos order by c.CPF",Paciente.class);
 		return  query.getResultList();
