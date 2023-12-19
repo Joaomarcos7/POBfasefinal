@@ -9,11 +9,12 @@ package regras_negocio;
 import java.util.List;
 
 
-import daodb4o.DAO;
-import daodb4o.DAOAtendimento;
-import daodb4o.DAOPaciente;
-import daodb4o.DAOPlano;
-import daodb4o.DAOUsuario;
+
+import daojpa.DAO;
+import daojpa.DAOAtendimento;
+import daojpa.DAOPaciente;
+import daojpa.DAOPlano;
+import daojpa.DAOUsuario;
 import modelo.*;
 
 public class Fachada {
@@ -227,7 +228,7 @@ public class Fachada {
 	
 	public static List<Paciente> PacienteMaisConsultas(){ //pacientes com nenhum atendimento agendado
 		DAO.begin();
-		List<Paciente> pacientes =daopaciente.PacienteMaisConsultas();
+		List<Paciente> pacientes =daopaciente.ConsultaPacienteAtendimentos();
 		DAO.commit();
 		return pacientes;
 	}

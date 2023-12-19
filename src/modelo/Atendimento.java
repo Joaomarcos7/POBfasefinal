@@ -38,6 +38,7 @@ public class Atendimento {
 		plano.adicionar(this);
 	}
 
+	public Atendimento() {}
 	public int getId() {
 		return id;
 	}

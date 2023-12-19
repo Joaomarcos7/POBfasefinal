@@ -1,0 +1,32 @@
+11:12:12,887  INFO Util:31 - Util.conectar - lendo arquivo util.properties: 
+11:12:12,893  INFO Util:38 - sgbd => postgresql
+11:12:12,894  INFO Util:39 - banco => ProjetoPOB
+11:12:12,894  INFO Util:40 - ip => localhost
+11:12:12,894  INFO Util:45 - configurando postgresql
+11:12:12,919 DEBUG logging:38 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+11:12:13,095  INFO LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [name: hibernate-postgresql]
+11:12:13,156  INFO Version:44 - HHH000412: Hibernate ORM core version 6.3.1.Final
+11:12:13,201 DEBUG RegionFactoryInitiator:122 - Cannot default RegionFactory based on registered strategies as `[]` RegionFactory strategies were registered
+11:12:13,202  INFO RegionFactoryInitiator:50 - HHH000026: Second-level cache disabled
+11:12:13,497  WARN pooling:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+11:12:13,504  INFO pooling:135 - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+11:12:13,504  INFO pooling:157 - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/ProjetoPOB]
+11:12:13,505  INFO pooling:166 - HHH10001001: Connection properties: {password=****, user=postgres}
+11:12:13,505  INFO pooling:170 - HHH10001003: Autocommit mode: false
+11:12:13,508  INFO pooling:366 - HHH10001115: Connection pool size: 20 (min=1)
+11:12:13,840  WARN deprecation:152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+11:12:15,390  INFO JtaPlatformInitiator:58 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+11:12:15,413  INFO access:52 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@525b1b70] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+11:12:16,065 DEBUG SQL:135 - select p1_0.CPF,p1_0.Nome from tb_paciente p1_0 where p1_0.CPF=?
+11:12:16,067 TRACE bind:24 - binding parameter (1:VARCHAR) <- [14059714445]
+11:12:16,114 DEBUG SQL:135 - select p1_0.nome from tb_plano p1_0 where p1_0.nome=?
+11:12:16,114 TRACE bind:24 - binding parameter (1:VARCHAR) <- [Premium]
+11:12:16,120 DEBUG SQL:135 - select p1_0.CPF,p1_0.Nome from tb_paciente p1_0 where p1_0.CPF=?
+11:12:16,120 TRACE bind:24 - binding parameter (1:VARCHAR) <- [14059714445]
+11:12:16,123 DEBUG SQL:135 - select p1_0.nome from tb_plano p1_0 where p1_0.nome=?
+11:12:16,124 TRACE bind:24 - binding parameter (1:VARCHAR) <- [Premium]
+11:12:16,135 DEBUG SQL:135 - select a1_0.pacientefk,a1_0.id,a1_0.data,a1_0.planofk from tb_atendimento a1_0 where a1_0.pacientefk=?
+11:12:16,135 TRACE bind:24 - binding parameter (1:VARCHAR) <- [14059714445]
+11:12:16,142  INFO pooling:601 - HHH10001008: Cleaning up connection pool [jdbc:postgresql://localhost:5432/ProjetoPOB]
+11:12:16,145 ERROR pooling:470 - Connection leak detected: there are 1 unclosed connections upon shutting down pool jdbc:postgresql://localhost:5432/ProjetoPOB
+11:12:16,146 ERROR pooling:301 - Connection leak detected: there are 1 unclosed connections

@@ -1,33 +1,39 @@
 package modelo;
 
+import jakarta.persistence.Id;
+
 public class Usuario {
 	
+	@Id
 	private String nome;
 	private String senha;
 	
+	public Usuario() {}
 	public Usuario(String nome, String senha) {
+		super();
 		this.nome = nome;
 		this.senha = senha;
 	}
-	
+
 	public String getNome() {
-		return this.nome;
+		return nome;
 	}
-	
-	public void setNome(String novoNome) {
-		this.nome = novoNome;
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
-	
+
 	public String getSenha() {
-		return this.senha;
+		return senha;
 	}
-	
-	public void setSenha(String novaSenha) {
-		this.senha = novaSenha;
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Usuario [nome = " + nome + "]" + "[senha = " + senha + "]";
+		return "Usuario [nome=" + nome + ", senha=" + senha + "]";
 	}
+	
 }

@@ -1,6 +1,7 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -15,12 +16,13 @@ public class Plano {
 	String nome;
 	@OneToMany(mappedBy="plano",cascade={CascadeType.PERSIST, CascadeType.MERGE},
 			fetch=FetchType.LAZY)
-	ArrayList<Atendimento> lista = new ArrayList<Atendimento>();
+	List<Atendimento> atendimentos=new ArrayList<>();
 
 	public Plano(String nome) {
 		this.nome=nome;
 	}
 	
+	public Plano() {}
 	public String getNome() {
 		return this.nome;
 	}
@@ -30,19 +32,19 @@ public class Plano {
 	}
 	
 	public void adicionar(Atendimento a){
-		lista.add(a);
+		atendimentos.add(a);
 	}
 
 	public void remover(Atendimento a) throws Exception {
-		this.lista.remove(a);
+		this.atendimentos.remove(a);
 }
 	
-	public ArrayList<Atendimento> getAtendimentos(){
-		return this.lista;
+	public List<Atendimento> getAtendimentos(){
+		return this.atendimentos;
 	}
 	@Override
 	public String toString() {
-		return "Plano [nome=" + nome + ", lista=" + lista.toString() + "]";
+		return "Plano [nome=" + nome + ", atendimentos=" + atendimentos.toString() + "]";
 	}
 	
 	public String ToStringPattern() {

@@ -1,6 +1,7 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.TreeMap;
 
 import jakarta.persistence.CascadeType;
@@ -18,12 +19,15 @@ public class Paciente {
 	String Nome;
 	@OneToMany(mappedBy="paciente",cascade={CascadeType.PERSIST, CascadeType.MERGE},
 			fetch=FetchType.LAZY)
-	ArrayList<Atendimento> lista= new ArrayList<>();
+	List<Atendimento> atendimentos=new ArrayList<>();
 	
 	public Paciente(String CPF,String Nome) {
 		this.CPF=CPF;
 		this.Nome=Nome;
 	}
+	
+	public Paciente() {}
+	
 	
 	public String getCPF() {
 		return CPF;
@@ -42,23 +46,23 @@ public class Paciente {
 	}
 	
 	public void adicionar(Atendimento a){
-		this.lista.add(a);
+		this.atendimentos.add(a);
 	}
 	
 	public void remover(Atendimento atendimento) throws Exception {
-		lista.remove(atendimento);
+		atendimentos.remove(atendimento);
 }
-	public ArrayList<Atendimento> getAtendimentos(){
-			return this.lista;
+	public List<Atendimento> getAtendimentos(){
+			return this.atendimentos;
 		}
 	
-	public void SetAtendimentos(ArrayList<Atendimento> lista ) {
-			this.lista= lista;
+	public void SetAtendimentos(ArrayList<Atendimento> atendimentos ) {
+			this.atendimentos= atendimentos;
 		}
 
 	@Override
 	public String toString() {
-		return "Paciente [CPF=" + CPF + ", Nome=" + Nome + ", lista=" + this.lista.toString() + "]";
+		return "Paciente [CPF=" + CPF + ", Nome=" + Nome + ", atendimentos=" + this.atendimentos.toString() + "]";
 	}
 	
 	public String ToStringPattern() {
