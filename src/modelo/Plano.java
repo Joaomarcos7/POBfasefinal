@@ -2,9 +2,19 @@ package modelo;
 
 import java.util.ArrayList;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+@Entity
+@Table(name="tb_plano")
 public class Plano {
-
+	@Id
 	String nome;
+	@OneToMany(mappedBy="plano",cascade={CascadeType.PERSIST, CascadeType.MERGE},
+			fetch=FetchType.LAZY)
 	ArrayList<Atendimento> lista = new ArrayList<Atendimento>();
 
 	public Plano(String nome) {

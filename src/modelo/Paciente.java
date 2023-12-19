@@ -3,10 +3,21 @@ package modelo;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
-public class Paciente {
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name="tb_paciente")
+public class Paciente {
+	@Id
 	String CPF;
 	String Nome;
+	@OneToMany(mappedBy="paciente",cascade={CascadeType.PERSIST, CascadeType.MERGE},
+			fetch=FetchType.LAZY)
 	ArrayList<Atendimento> lista= new ArrayList<>();
 	
 	public Paciente(String CPF,String Nome) {

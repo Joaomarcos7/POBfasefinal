@@ -2,11 +2,32 @@ package modelo;
 
 import java.time.LocalDateTime;
 
-public class Atendimento {
+import org.hibernate.annotations.Cascade;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="tb_atendimento")
+public class Atendimento {
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int id;
 	String data;
+	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE},
+			fetch=FetchType.LAZY)
+	  @JoinColumn(name ="pacientefk")
 	Paciente paciente;
+	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE},
+			fetch=FetchType.LAZY)
+	  @JoinColumn(name = "planofk")
 	Plano plano;
 	
 	public Atendimento(String data, Paciente paciente, Plano plano) {
