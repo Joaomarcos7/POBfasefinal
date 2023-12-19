@@ -17,8 +17,7 @@ public class Paciente {
 	@Id
 	String CPF;
 	String Nome;
-	@OneToMany(mappedBy="paciente",cascade={CascadeType.PERSIST, CascadeType.MERGE},
-			fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="paciente",cascade={CascadeType.PERSIST, CascadeType.MERGE})
 	List<Atendimento> atendimentos=new ArrayList<>();
 	
 	public Paciente(String CPF,String Nome) {

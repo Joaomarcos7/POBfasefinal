@@ -14,8 +14,7 @@ import jakarta.persistence.Table;
 public class Plano {
 	@Id
 	String nome;
-	@OneToMany(mappedBy="plano",cascade={CascadeType.PERSIST, CascadeType.MERGE},
-			fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="plano",cascade={CascadeType.PERSIST, CascadeType.MERGE})
 	List<Atendimento> atendimentos=new ArrayList<>();
 
 	public Plano(String nome) {

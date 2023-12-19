@@ -30,7 +30,7 @@ public class DAOPaciente extends DAO<Paciente> {
 
 	public List<Paciente> ConsultaPacienteAtendimentos() {
 		// cliestes com 3 alugueis
-		TypedQuery<Paciente> q = manager.createQuery("select c from Paciente c where size(c.atendimentos) >1", Paciente.class);
+		TypedQuery<Paciente> q = manager.createQuery("SELECT p FROM Paciente p LEFT JOIN FETCH p.atendimentos a WHERE SIZE(p.atendimentos) > 1", Paciente.class);
 		return q.getResultList();
 	}
 }

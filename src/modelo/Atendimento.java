@@ -21,12 +21,10 @@ public class Atendimento {
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 	int id;
 	String data;
-	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE},
-			fetch=FetchType.LAZY)
+	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE})
 	  @JoinColumn(name ="pacientefk")
 	Paciente paciente;
-	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE},
-			fetch=FetchType.LAZY)
+	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE})
 	  @JoinColumn(name = "planofk")
 	Plano plano;
 	

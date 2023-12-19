@@ -21,7 +21,7 @@ public class DAOAtendimento extends DAO<Atendimento>{
 	}
 
 	public List<Atendimento> readAll(){
-		TypedQuery<Atendimento> q = manager.createQuery("select a from Atendimento a LEFT JOIN FETCH a.carro  JOIN FETCH a.cliente order by a.id", Atendimento.class);
+		TypedQuery<Atendimento> q = manager.createQuery("select a from Atendimento a LEFT JOIN FETCH a.paciente JOIN FETCH a.plano order by a.id", Atendimento.class);
 		return  q.getResultList();
 	}
 

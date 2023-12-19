@@ -159,7 +159,7 @@ public class TelaConsulta {
 
 		comboBox = new JComboBox();
 		comboBox.setToolTipText("selecione a consulta");
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Pacientes com mais de 1 consulta", "atendimentos de um determinado paciente", "atendimento na data X"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Atendimentos de Paciente X", "Atendimentos na Data X", "Pacientes com mais de 1 consulta"}));
 		comboBox.setBounds(21, 10, 513, 22);
 		frame.getContentPane().add(comboBox);
 	}
